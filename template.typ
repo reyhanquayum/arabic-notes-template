@@ -1,6 +1,6 @@
 // The main function that lays out the entire document
-#let lecture-notes(
-  title: "Lecture Notes",
+#let lesson-notes(
+  title: "Lesson Notes",
   author: "Student of Knowledge",
   subtitle: [],
   body
@@ -67,25 +67,45 @@
   }
 
   // helper function to render Arabic block from matn
-  let matn_block(body) = {
+  #let matn_block(body, label: "متن") = {
+    v(10pt)
     align(center)[
       #block(
         breakable: false,
-        stroke: maroon,
+        stroke: black,
         radius: 5pt,
         width: 80%,
-        inset: 10pt,
-        spacing: 15pt,
-        text(
-          size: 15pt,
-          fill: maroon,
-          dir: rtl,
-          body
-        )
-      )
-    ]
-  }
+        [
+          #place(
+            top + left,
+            dx: 20pt,
+            dy: -8pt,
+            
+            rect(
+              fill: white,
+              stroke: black,
+              radius: 3pt,
+              inset: (x: 6pt, y: 5pt),
+              text(label, size: 11pt, fill: black, dir: rtl)
+            )
+          )
 
+          #pad(
+            top: 1.5em,
+            bottom: 1em,
+            x: 1em,
+            text(
+              size: 15pt,
+            fill: black,
+            dir: rtl,
+            body
+          )
+        )
+      ]
+    )
+  ]
+  v(10pt)
+}
 
   //helper function for Arabic example blocks
   let arr_example(body, translation: none) = {

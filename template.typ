@@ -1,101 +1,80 @@
-// The main function that lays out the entire document
-#let lesson-notes(
-  title: "Lesson Notes",
-  author: "Student of Knowledge",
-  subtitle: [],
-  body
-) = {
-  // ================= PREAMBLE =================
-  // this section for the document's overall style
+// template.typ
 
-  // Set the base document properties using arguments from the function.
-  set document(
-    title: title,
-    author: author,
-  )
+// =================== HELPER FUNCTIONS ===================
+// these functions create the custom Arabic blocks
 
-  set page(
-    paper: "us-letter"
-  )
+// helper function to render inline Arabic
+#let arr(body) = text(dir: rtl, body)
 
-  // Set the primary english and arabic font
-  set text(font: ("New Computer Modern", "Amiri"), lang: "en")
+// function to render just a centered Arabic block
+#let arr_block(body) = {
+  align(center)[
+    #block(
+      width: 80%,
+      inset: 10pt,
+      radius: 4pt,
+      text(size: 12pt, dir: rtl, body)
+    )
+  ]
+}
 
-  // double spacing
-  set par(leading: 1em)
-  // add space between paragraphs
-  set block(spacing: 1.1em)
+// function to display Qur'an blocks
+#let quran_block(body, translation: none, verse: none) = {
+  align(center)[
+    #block(
+      breakable: false,
+      width: 100%,
+      inset: 10pt,
+      if translation != none or verse != none {
+        stack(
+          dir: ttb,
+          spacing: 12pt,
+          text(size: 15pt, dir: rtl, [﴿ #body ﴾]),
 
-  // helper function to render inline Arabic
-  let arr(body) = text(dir: rtl, body)
+          if translation != none {
+            text(size: 10pt, style: "italic", translation)
+          },
 
-  // function to render block Arabic
-  let arr_block(body) = {
-    align(center)[
-      #block(
-        width: 80%,
-        inset: 10pt,
-        radius: 4pt,
-        text(dir: rtl, body)
-      )
-    ]
-  }
-  // function to display Qur'an blocks
-  let quran_block(body, translation: none, verse: none) = {
-    align(center)[
-      #block(
-        breakable: false,
-        width: 100%,
-        inset: 10pt,
-        spacing: 15pt,
-        [
-          #stack(
-            dir: ttb,
-            spacing: 15pt,
-            text(size: 15pt, dir:rtl, [﴿ #body ﴾]),
+          if verse != none {
+            text(size: 10pt, style: "italic", verse)
+          }
+        )
+      } else {
+        text(size: 15pt, dir: rtl, [﴿ #body ﴾])
+      }
+    )
+  ]
+}
 
-            if translation != none{
-              text(size: 10pt, style: "italic", translation)
-            },
-            if verse != none{
-              text(size: 10pt, style: "italic", verse)
-            }
+// helper function to render Arabic block from matn
+#let matn_block(body, label: "متن") = {
+  v(10pt)
+  align(center)[
+    #block(
+      breakable: false,
+      stroke: black,
+      radius: 5pt,
+      width: 80%,
+      [
+        #place(
+          top + left,
+          dx: 20pt,
+          dy: -8pt,
+          rect(
+            fill: white,
+            stroke: black,
+            radius: 3pt,
+            inset: (x: 6pt, y: 5pt),
+            text(label, size: 11pt, fill: black, dir: rtl)
           )
-        ]
-      )
-    ]
-  }
+        )
 
-  // helper function to render Arabic block from matn
-  #let matn_block(body, label: "متن") = {
-    v(10pt)
-    align(center)[
-      #block(
-        breakable: false,
-        stroke: black,
-        radius: 5pt,
-        width: 80%,
-        [
-          #place(
-            top + left,
-            dx: 20pt,
-            dy: -8pt,
-            
-            rect(
-              fill: white,
-              stroke: black,
-              radius: 3pt,
-              inset: (x: 6pt, y: 5pt),
-              text(label, size: 11pt, fill: black, dir: rtl)
-            )
-          )
-
-          #pad(
-            top: 1.5em,
-            bottom: 1em,
-            x: 1em,
-            text(
-              size: 15pt,
+        #pad(
+          top: 1.5em,
+          bottom: 1em,
+          x: 1em,
+          text(
+            size: 15pt,
             fill: black,
             dir: rtl,
             body
@@ -107,31 +86,52 @@
   v(10pt)
 }
 
-  //helper function for Arabic example blocks
-  let arr_example(body, translation: none) = {
-    align(center)[
-      #block(
-        breakable: false,
-        fill: luma(240),
-        width: 80%,
-        inset: 10pt,
-        radius: 5pt,
-        [
-          #stack(
-            dir: ttb, // top-to-bottom
-            spacing: 10pt,
-            text(15pt, dir: rtl, body),
+// helper function for Arabic example blocks
+#let arr_example(body, translation: none) = {
+  align(center)[
+    #block(
+      breakable: false,
+      fill: luma(240),
+      width: 80%,
+      inset: 10pt,
+      radius: 5pt,
+      [
+        #stack(
+          dir: ttb, // top-to-bottom
+          spacing: 10pt,
+          text(15pt, dir: rtl, body),
 
-            if translation != none {
-              text(10pt, style: "italic", translation)
-            }
-          )
-        ]
-      )
-    ]
-  }
+          if translation != none {
+            text(10pt, style: "italic", translation)
+          }
+        )
+      ]
+    )
+  ]
+}
 
-  // Set up heading styles
+
+// =================== MAIN TEMPLATE FUNCTION ===================
+// this applies all the styling
+#let arabic_notes(
+  title: "Untitled Notes",
+  subtitle: none,
+  author: "Anonymous",
+  paper: "us-letter",
+  body
+) = {
+  // set document metadata
+  set document(title: title, author: author)
+
+  // set page properties.
+  set page(paper: paper)
+
+  // set base text and paragraph styles
+  set text(font: ("New Computer Modern", "Amiri"), lang: "en")
+  set par(leading: 1em)
+  set block(spacing: 1.1em)
+
+  // set heading styles
   set heading(numbering: "1.")
 
   show heading.where(level: 1): it => {
@@ -158,18 +158,16 @@
     )
   }
 
-  // ================= DOCUMENT BODY =================
-
-  // title and subtitle block
+  // display the title block
   align(center)[
     #text(2.0em, weight: 500)[#title]
     #v(1em)
     #if subtitle != none {
-        #text(2.0em, weight: 100)[#subtitle]
+      text(2.0em, weight: 100)[#arr(subtitle)]
     }
   ]
-  v(2.5em) // vertical space after title block
+  v(2.5em)
 
-  // main content goes here
+  // display the document body
   body
 }

@@ -1,11 +1,7 @@
 [package]
 name = "arabic-notes"
-version = "1.0.0"
+version = "0.0.1"
 entrypoint = "template.typ"
 authors = ["reyhanquayum"]
 license = "MIT"
 description = "A template for taking Arabic notes in English, with custom blocks for matn, examples, and Qur'an verses. Useful for the Islamic sciences."
-
-[template]
-path = "showcase"
-entrypoint = "showcase.typ"

@@ -3,7 +3,7 @@
 // 1. Import the template and all its helper functions.
 //    The path "@local/arabic-notes:1.0.0" refers to the package
 //    defined in typst.toml.
-#import "@local/arabic-notes:1.0.0": *
+#import "@local/arabic-notes:0.0.1":*
 
 // 2. Apply the main template function to the document.
 //    Provide the title, subtitle, and author here. The rest of the

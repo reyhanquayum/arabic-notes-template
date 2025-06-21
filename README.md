@@ -3,13 +3,17 @@ A simple Typst template for Arabic-English notes. See ['showcase.pdf'](showcase.
 
 ## Showcase Images
 
-<img src="img/screenshot1.png" width="500"></img>
-<img src="img/screenshot2.png" width="500"></img>
+<div style="display: flex; justify-content: space-around;">
+  <img src="img/screenshot1.png" width="45%">
+  <img src="img/screenshot2.png" width="45%">
+</div>
 
 ## Example Images
 
-<img src="img/screenshot3.png" width="500"></img>
-<img src="img/screenshot4.png" width="500"></img>
+<div style="display: flex; justify-content: space-around;">
+  <img src="img/screenshot3.png" width="45%">
+  <img src="img/screenshot4.png" width="45%">
+</div>
 
 ## Usage
 

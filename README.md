@@ -1,8 +1,15 @@
 # Arabic Notes Typst Template
 A simple Typst template for Arabic-English notes. See ['showcase.pdf'](showcase.pdf) for the rendered PDF usage and see ['example.pdf'](example.pdf) for an example rendered PDF output from my own notes.
 
+## Showcase Images
+
 <img src="img/screenshot1.png" width="500"></img>
 <img src="img/screenshot2.png" width="500"></img>
+
+## Example Images
+
+<img src="img/screenshot3.png" width="500"></img>
+<img src="img/screenshot4.png" width="500"></img>
 
 ## Usage
 

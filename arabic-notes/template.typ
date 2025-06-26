@@ -47,7 +47,7 @@
 }
 
 // helper function to render Arabic block from matn
-#let matn_block(body, label: "متن") = {
+#let matn_block(body, label: "متن", line_spacing: 1.5em) = {
   v(10pt)
   align(center)[
     #block(
@@ -77,7 +77,12 @@
             size: 15pt,
             fill: black,
             dir: rtl,
-            body
+            { 
+              v(5pt)
+              set par(leading: line_spacing)
+              body
+              v(5pt)
+            }
           )
         )
       ]

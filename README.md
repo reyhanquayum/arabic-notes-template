@@ -25,4 +25,6 @@ You can use this easily on the Typst web app by uploading the ['template.typ'](a
 
 Install Typst on your system, then fork and clone this repo and run a command such as 'typst watch showcase.typ'.
 
+To use the package as a local package see [here](https://github.com/typst/packages/blob/main/README.md#local-packages)
+
 Note that this template is intended for use with the Amiri font. If you see Arabic output is rendered differently, you should install the font.

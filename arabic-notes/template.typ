@@ -136,7 +136,7 @@
 
   show heading.where(level: 1): it => {
     block(
-      text(1.4em, weight: "bold")[#it],
+      text(1.3em, weight: "bold")[#it],
       above: 1.8em,
       below: 1em
     )

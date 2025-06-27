@@ -4,7 +4,10 @@
 // these functions create the custom Arabic blocks
 
 // helper function to render inline Arabic
-#let arr(body) = text(dir: rtl, body)
+#let arr(body) = {
+  set text(font: "Amiri")
+  text(dir: rtl, body)
+}
 
 // function to render just a centered Arabic block
 #let arr_block(body) = {
@@ -13,7 +16,7 @@
       width: 80%,
       inset: 10pt,
       radius: 4pt,
-      text(size: 12pt, dir: rtl, body)
+      arr(body)
     )
   ]
 }
@@ -107,7 +110,7 @@
           text(15pt, dir: rtl, body),
 
           if translation != none {
-            text(10pt, style: "italic", translation)
+            text(10pt, style: "italic", eval(translation, mode: "markup"))
           }
         )
       ]

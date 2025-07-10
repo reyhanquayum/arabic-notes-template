@@ -73,18 +73,15 @@
         )
 
         #pad(
-          top: 1.5em,
-          bottom: 1em,
-          x: 1em,
+          bottom: 2.2em,
+          x: 1.2em,
           text(
             size: 15pt,
             fill: black,
             dir: rtl,
             { 
-              v(5pt)
               set par(leading: line_spacing)
               body
-              v(5pt)
             }
           )
         )

@@ -73,6 +73,7 @@
         )
 
         #pad(
+          top: 2.2em,
           bottom: 2.2em,
           x: 1.2em,
           text(

@@ -93,11 +93,11 @@
 }
 
 // helper function for Arabic example blocks
-#let arr_example(body, translation: none) = {
+#let arr_example(body, translation: none, fill: true) = {
   align(center)[
     #block(
       breakable: false,
-      fill: luma(240),
+      fill: if fill != false { luma(240) } else { none },
       width: 80%,
       inset: 10pt,
       radius: 5pt,
